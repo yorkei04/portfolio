@@ -1,8 +1,7 @@
-# Andrew SZE-TO - Portfolio
+# Kei - Portfolio
 
 A modern, responsive developer portfolio built with Next.js 15, TypeScript, and
-Tailwind CSS 4. This portfolio showcases my journey as a software developer,
-featuring my work in web development, game development, and AI integration.
+Tailwind CSS 4. This portfolio showcases my journey as a software engineer.
 
 ## 🚀 Live Demo
 
@@ -119,31 +118,48 @@ Place your resume as `public/resume.pdf` (or update the path in `portfolio.ts`)
 
 ## 📦 Deployment
 
-### Vercel (Recommended)
+### Quick Start
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Deploy automatically on every push
+**Option 1: Vercel (Recommended - Easiest)** ⭐
+
+1. Push your code to GitHub:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/YOUR_USERNAME/portfolio.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+2. Go to [vercel.com](https://vercel.com) and sign up with GitHub
+3. Click "Add New Project" and import your repository
+4. Click "Deploy" - your site will be live in ~2 minutes!
+
+**Option 2: GitHub Pages**
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to GitHub Pages.
+
+For more detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 🤝 About Me
 
-I'm Andrew SZE-TO, a passionate software developer from Hong Kong specializing
-in:
+Hi, I'm
 
-- **Web Development** (Next.js, Laravel, React)
-- **Game Development** (Unity, C#, Multiplayer)
-- **AI Integration** (Machine Learning, Educational Tools)
+**Kei**  
+*Bridging software and hardware in control*
 
-Currently working as a Full-stack Developer at She Communications Limited, where
-I'm leading the architectural overhaul of a beauty product review platform.
+Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.
+
+This portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a Next.js framework originally developed by my friend, Andrew SZE-TO.
 
 ## 📫 Contact
 
-- **Email**: klszeto020@gmail.com
-- **GitHub**: [@zkwokleung](https://github.com/zkwokleung)
+- **Email**: hungkeiyau@gmail.com
+- **GitHub**: [@yorkei04](https://github.com/yorkei04)
 - **LinkedIn**:
-  [kwok-leung-sze-to](https://linkedin.com/in/kwok-leung-sze-to-aa735a1a7)
-- **Twitter**: [@zkwokleung](https://twitter.com/zkwokleung)
+  [kei-yau](https://www.linkedin.com/in/kei-yau/)
+- **Instagram**: [@yorkei04](https://www.instagram.com/yorkei04/)
 
 ## 📄 License
 

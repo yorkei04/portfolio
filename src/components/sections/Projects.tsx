@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
 import Card, {
@@ -12,11 +13,11 @@ import Card, {
 } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
+import { useProjectHover } from '@/contexts/ProjectHoverContext';
 import { cn } from '@/lib/utils';
 
 export default function Projects() {
   const [isVisible, setIsVisible] = useState(false);
-  const [filter, setFilter] = useState<'all' | 'featured'>('all');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,11 +36,6 @@ export default function Projects() {
 
     return () => observer.disconnect();
   }, []);
-
-  const filteredProjects =
-    filter === 'featured'
-      ? portfolioData.projects.filter((project) => project.featured)
-      : portfolioData.projects;
 
   return (
     <section id='projects' className='py-20 bg-foreground/[0.02]'>
@@ -63,84 +59,18 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Filter Buttons */}
-          <div
-            className={cn(
-              'flex justify-center gap-4 mb-12 transition-all duration-1000 delay-200',
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8',
-            )}
-          >
-            <Button
-              variant={filter === 'all' ? 'default' : 'outline'}
-              onClick={() => setFilter('all')}
-              size='sm'
-            >
-              All Projects ({portfolioData.projects.length})
-            </Button>
-            <Button
-              variant={filter === 'featured' ? 'default' : 'outline'}
-              onClick={() => setFilter('featured')}
-              size='sm'
-            >
-              Featured (
-              {portfolioData.projects.filter((p) => p.featured).length})
-            </Button>
-          </div>
-
           {/* Projects Grid */}
           <div
             className={cn(
-              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-400',
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-1000 delay-200',
               isVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-8',
             )}
           >
-            {filteredProjects.map((project, index) => (
+            {portfolioData.projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
-          </div>
-
-          {/* Call to Action */}
-          <div
-            className={cn(
-              'text-center mt-16 transition-all duration-1000 delay-600',
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8',
-            )}
-          >
-            <div className='bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg p-8 border border-blue-500/20'>
-              <h3 className='text-2xl font-bold mb-4'>Want to see more?</h3>
-              <p className='text-foreground/70 mb-6 max-w-2xl mx-auto'>
-                I&apos;m always working on new projects and experiments. Check
-                out my GitHub for the latest updates and feel free to reach out
-                if you&apos;d like to collaborate!
-              </p>
-              <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                <Button
-                  onClick={() =>
-                    window.open('https://github.com/alex', '_blank')
-                  }
-                  className='min-w-[150px]'
-                >
-                  View GitHub
-                </Button>
-                <Button
-                  variant='outline'
-                  onClick={() =>
-                    document
-                      .getElementById('contact')
-                      ?.scrollIntoView({ behavior: 'smooth' })
-                  }
-                  className='min-w-[150px]'
-                >
-                  Get In Touch
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </Container>
@@ -157,30 +87,39 @@ interface ProjectCardProps {
     technologies: string[];
     githubUrl?: string;
     liveUrl?: string;
+    referenceUrl?: string;
     featured: boolean;
   };
   index: number;
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
+  const { setHoveredProjectId } = useProjectHover();
+  const [imageError, setImageError] = useState(false);
   const isValidUrl = (url?: string) => {
     return url && url !== '#' && url.trim() !== '';
   };
 
   const hasValidLiveUrl = isValidUrl(project.liveUrl);
   const hasValidGithubUrl = isValidUrl(project.githubUrl);
+  const hasValidReferenceUrl = isValidUrl(project.referenceUrl);
 
   return (
-    <Card
-      hover
-      className={cn(
-        'group relative overflow-hidden transition-all duration-300',
-        'hover:shadow-lg hover:shadow-foreground/5',
-      )}
-      style={{
-        animationDelay: `${index * 100}ms`,
-      }}
+    <div
+      onMouseEnter={() => setHoveredProjectId(project.id)}
+      onMouseLeave={() => setHoveredProjectId(null)}
+      data-project-id={project.id}
     >
+      <Card
+        hover
+        className={cn(
+          'group relative overflow-hidden transition-all duration-300',
+          'hover:shadow-lg hover:shadow-foreground/5',
+        )}
+        style={{
+          animationDelay: `${index * 100}ms`,
+        }}
+      >
       {project.featured && (
         <div className='absolute top-4 right-4 z-10'>
           <Badge variant='default' className='text-xs'>
@@ -190,41 +129,64 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       )}
 
       <CardHeader>
-        {/* Project Image Placeholder */}
-        <div className='w-full h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-300'>
-          <div className='absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center'>
-            <div className='text-4xl font-bold text-foreground/30'>
-              {project.title
-                .split(' ')
-                .map((word) => word[0])
-                .join('')}
-            </div>
-          </div>
-
-          {/* Overlay with links - only show if we have valid links */}
-          {(hasValidLiveUrl || hasValidGithubUrl) && (
-            <div className='absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
-              {hasValidLiveUrl && (
-                <Button
-                  size='sm'
-                  onClick={() => window.open(project.liveUrl, '_blank')}
-                  className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'
-                >
-                  <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                  Live Demo
-                </Button>
+        {/* Project Image Preview */}
+        <div className='w-full h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-300'>
+          {project.image && !imageError ? (
+            <>
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className='object-cover'
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                onError={() => setImageError(true)}
+              />
+              {/* Overlay with links - only show if we have valid links */}
+              {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
+                <div className='absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
+                  {hasValidLiveUrl && (
+                    <Button
+                      size='sm'
+                      onClick={() => window.open(project.liveUrl, '_blank')}
+                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'
+                    >
+                      <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                      Live Demo
+                    </Button>
+                  )}
+                  {hasValidGithubUrl && (
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      onClick={() => window.open(project.githubUrl, '_blank')}
+                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'
+                    >
+                      <GitHubIcon className='w-4 h-4 mr-2' />
+                      Code
+                    </Button>
+                  )}
+                  {hasValidReferenceUrl && (
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      onClick={() => window.open(project.referenceUrl, '_blank')}
+                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'
+                    >
+                      <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                      Reference
+                    </Button>
+                  )}
+                </div>
               )}
-              {hasValidGithubUrl && (
-                <Button
-                  variant='outline'
-                  size='sm'
-                  onClick={() => window.open(project.githubUrl, '_blank')}
-                  className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'
-                >
-                  <GitHubIcon className='w-4 h-4 mr-2' />
-                  Code
-                </Button>
-              )}
+            </>
+          ) : (
+            <div className='absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center'>
+              <div className='text-4xl font-bold text-foreground/30'>
+                {project.title
+                  .split(' ')
+                  .map((word) => word[0])
+                  .join('')}
+              </div>
             </div>
           )}
         </div>
@@ -245,7 +207,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </CardContent>
 
-      {(hasValidLiveUrl || hasValidGithubUrl) && (
+      {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
         <CardFooter>
           <div className='flex gap-2 w-full'>
             {hasValidLiveUrl && (
@@ -255,7 +217,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 onClick={() => window.open(project.liveUrl, '_blank')}
                 className={cn(
                   'flex items-center justify-center',
-                  hasValidGithubUrl ? 'flex-1' : 'w-full',
+                  (hasValidGithubUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
                 )}
               >
                 <ExternalLinkIcon className='w-4 h-4 mr-2' />
@@ -269,17 +231,32 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 onClick={() => window.open(project.githubUrl, '_blank')}
                 className={cn(
                   'flex items-center justify-center',
-                  hasValidLiveUrl ? 'flex-1' : 'w-full',
+                  (hasValidLiveUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
                 )}
               >
                 <GitHubIcon className='w-4 h-4 mr-2' />
                 Code
               </Button>
             )}
+            {hasValidReferenceUrl && (
+              <Button
+                size='sm'
+                variant='outline'
+                onClick={() => window.open(project.referenceUrl, '_blank')}
+                className={cn(
+                  'flex items-center justify-center',
+                  (hasValidLiveUrl || hasValidGithubUrl) ? 'flex-1' : 'w-full',
+                )}
+              >
+                <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                Reference
+              </Button>
+            )}
           </div>
         </CardFooter>
       )}
-    </Card>
+      </Card>
+    </div>
   );
 }
 

@@ -42,8 +42,7 @@ export default function Education() {
           >
             <h2 className='text-3xl md:text-4xl font-bold mb-4'>Education</h2>
             <p className='text-foreground/70 text-lg max-w-2xl mx-auto'>
-              My academic journey and the educational experiences that have
-              shaped my expertise
+              My academic journey that has shaped my expertise
             </p>
           </div>
 

@@ -65,22 +65,6 @@ export default function About() {
                   </p>
                 ))}
               </div>
-
-              {/* Quick Stats */}
-              <div className='grid grid-cols-2 gap-6 mt-8 p-6 bg-background rounded-lg border border-foreground/10'>
-                {portfolioData.about.stats.map((stat) => (
-                  <div key={stat.key} className='text-center'>
-                    <div className='text-2xl font-bold text-foreground mb-1'>
-                      {stat.key === 'projects'
-                        ? portfolioData.projects.length
-                        : stat.value}
-                    </div>
-                    <div className='text-sm text-foreground/60'>
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Skills & Expertise */}
@@ -110,16 +94,28 @@ export default function About() {
                   {portfolioData.about.section.coreTechnologiesTitle}
                 </h4>
                 <div className='flex flex-wrap gap-2'>
-                  {[
-                    ...portfolioData.skills.frontend.slice(0, 3),
-                    ...portfolioData.skills.backend.slice(0, 2),
-                    ...portfolioData.skills.specialization.slice(0, 2),
-                  ].map((skill, index) => (
+                  {portfolioData.about.coreTechnologies.map((skill, index) => (
                     <Badge key={index} variant='skill' className='text-xs'>
                       {skill.name}
                     </Badge>
                   ))}
                 </div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className='grid grid-cols-2 gap-6 mt-8 p-6 bg-background rounded-lg border border-foreground/10'>
+                {portfolioData.about.stats.map((stat) => (
+                  <div key={stat.key} className='text-center'>
+                    <div className='text-2xl font-bold text-foreground mb-1'>
+                      {stat.key === 'projects'
+                        ? portfolioData.projects.length
+                        : stat.value}
+                    </div>
+                    <div className='text-sm text-foreground/60'>
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Current Focus */}

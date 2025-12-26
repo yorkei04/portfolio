@@ -13,38 +13,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Andrew SZE-TO - Full-Stack Developer & Game Developer',
+  title: 'Kei - Full-Stack Developer & Game Developer',
   description:
-    'Passionate software developer from Hong Kong specializing in web development, API design, game logic, and AI/ML integration. Experienced in Next.js, Laravel, Unity, and computer vision solutions.',
+    'Interested in software, electronic, and control engineering',
   keywords: [
-    'Andrew SZE-TO',
-    'Full-stack Developer',
-    'Game Developer',
-    'Hong Kong Developer',
-    'Next.js',
+    'Kei',
+    'Software | Electronic | Control Engineer',
+    'React',
     'Laravel',
     'Unity',
     'Computer Vision',
     'AI/ML',
-    'React',
     'TypeScript',
-    'Software Engineer',
   ],
-  authors: [{ name: 'Andrew SZE-TO' }],
-  creator: 'Andrew SZE-TO',
+  authors: [{ name: 'Kei' }],
+  creator: 'Kei',
   openGraph: {
-    title: 'Andrew SZE-TO - Full-Stack Developer & Game Developer',
+    title: 'Kei - Software | Electronic | Control Engineer',
     description:
-      'Passionate software developer from Hong Kong specializing in web development, API design, game logic, and AI/ML integration. Crafting what people dreamed of through clean, scalable code.',
+      'Interested in software development, electronic engineering, and control engineering.',
     type: 'website',
     locale: 'en_US',
-    siteName: 'Andrew SZE-TO Portfolio',
+    siteName: 'Kei Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Andrew SZE-TO - Full-Stack Developer & Game Developer',
+    title: 'Kei - Full-Stack Developer & Game Developer',
     description:
-      'Passionate software developer from Hong Kong specializing in web development, API design, game logic, and AI/ML integration.',
+      'Interested in software development, electronic engineering, and control engineering.',
     creator: '@zkwokleung',
   },
   robots: {

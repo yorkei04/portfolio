@@ -25,8 +25,8 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background/95 backdrop-blur-sm border-b border-foreground/10 shadow-sm'
-          : 'bg-transparent',
+          ? 'bg-slate-900/95 backdrop-blur-sm border-b border-slate-800/50 shadow-sm'
+          : 'bg-slate-900/95 backdrop-blur-sm',
       )}
     >
       <Container>
@@ -52,29 +52,6 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-
-          {/* CTA Button */}
-          <div className='hidden md:flex items-center space-x-4'>
-            {/* <Button */}
-            {/*   variant='outline' */}
-            {/*   size='sm' */}
-            {/*   onClick={() => */}
-            {/*     window.open(portfolioData.hero.resumeUrl, '_blank') */}
-            {/*   } */}
-            {/* > */}
-            {/*   Resume */}
-            {/* </Button> */}
-            <Button
-              size='sm'
-              onClick={() =>
-                document
-                  .getElementById('contact')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              Contact
-            </Button>
-          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -110,7 +87,7 @@ export default function Header() {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
           )}
         >
-          <nav className='py-4 border-t border-foreground/10 bg-background'>
+          <nav className='py-4 border-t border-slate-800/50 bg-slate-900/95'>
             {portfolioData.navigation.map((item) => (
               <Link
                 key={item.label}
