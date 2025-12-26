@@ -35,10 +35,25 @@ Vercel is the easiest way to deploy Next.js applications. It's made by the creat
    - Click "Deploy"
    - Your site will be live in ~2 minutes!
 
-3. **Custom Domain (Optional)**
-   - In your Vercel project settings, go to "Domains"
-   - Add your custom domain
-   - Follow the DNS configuration instructions
+3. **Custom Domain (Recommended for Professional Look)**
+   
+   The default Vercel URL (`portfolio-omega-peach-37.vercel.app`) is auto-generated and not very personal. You have two options:
+   
+   **Option A: Use Your Own Domain (Best)**
+   - Purchase a domain from providers like:
+     - [Namecheap](https://www.namecheap.com/) (~$10-15/year)
+     - [Google Domains](https://domains.google/) (~$12/year)
+     - [Cloudflare](https://www.cloudflare.com/products/registrar/) (~$8-10/year)
+   - In Vercel: Go to **Settings** → **Domains** → **Add Domain**
+   - Enter your domain (e.g., `keiyau.dev` or `www.keiyau.dev`)
+   - Follow Vercel's DNS configuration instructions
+   - Vercel automatically sets up HTTPS (free SSL certificate)
+   
+   **Option B: Use GitHub Pages (Free Alternative)**
+   - Deploy to GitHub Pages instead
+   - Your site will be at: `https://yorkei04.github.io/portfolio/`
+   - Or rename repo to `yorkei04.github.io` for root domain
+   - See Option 2 below for detailed instructions
 
 Your site will automatically redeploy whenever you push to the main branch!
 

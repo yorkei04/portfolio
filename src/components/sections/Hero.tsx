@@ -253,7 +253,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className='min-h-screen flex items-center justify-start relative overflow-hidden'>
+    <section className='min-h-screen flex items-center justify-start relative overflow-hidden pt-16 md:pt-16'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0 -z-10'>
         {/* Base gradient overlay */}
