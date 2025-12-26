@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
 import Badge from '@/components/ui/Badge';
@@ -65,31 +64,6 @@ export default function About() {
                     {paragraph}
                   </p>
                 ))}
-              </div>
-            </div>
-
-            {/* Mobile Robocon Photo - Only visible on mobile, between About Me and What I Do */}
-            <div
-              className={cn(
-                'lg:hidden py-8 transition-all duration-1000 delay-300',
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8',
-              )}
-            >
-              <div className='w-full space-y-4 max-w-md mx-auto'>
-                <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
-                  <Image
-                    src='/image/robocon.jpeg'
-                    alt='Robocon Hong Kong Champion 2021'
-                    fill
-                    className='object-cover'
-                    sizes='(max-width: 1024px) 100vw, 0vw'
-                  />
-                </div>
-                <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-                  While studying Computer Engineering, I explored hardware–software integration in robotics and helped my university team win Robocon Hong Kong 2021. I designed the pick‑and‑place mechanism for the arrow‑shooter.
-                </p>
               </div>
             </div>
 
