@@ -440,6 +440,24 @@ export default function Home() {
           {/* Main Content */}
           <div className='col-span-12 lg:col-span-8 xl:col-span-7'>
             <Hero />
+            {/* Mobile MTR OCC Photo - Only visible on mobile, hidden on desktop */}
+            <div className='lg:hidden px-4 py-8'>
+              <div className='w-full space-y-4 max-w-md mx-auto'>
+                <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                  <Image
+                    src='/image/mtr_occ.jpeg'
+                    alt='MTR OCC'
+                    fill
+                    className='object-cover'
+                    sizes='(max-width: 1024px) 100vw, 0vw'
+                    priority
+                  />
+                </div>
+                <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+                  The Operations Control Center features a large, integrated visual display wall that provides operators with real-time system status and control interfaces for SCADA, signaling, and automatic fare collection (AFC) systems, enabling continuous monitoring and rapid response
+                </p>
+              </div>
+            </div>
             <About />
             <Projects />
             <Experience />
