@@ -13,8 +13,7 @@ export const portfolioData = {
     greeting: "Hi, I'm",
     tagline: 'Bridging software and hardware in control',
     description:
-      'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a Next.js framework originally developed by my friend, Andrew SZE-TO .',
-    resumeUrl: '/resume.pdf',
+      'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO .',
   },
 
   // Navigation
@@ -222,11 +221,9 @@ export const portfolioData = {
       duration: 'Sept. 2020 - May 2024',
       location: 'Hong Kong',
       description:
-        'Comprehensive engineering program focusing on computer systems, software development, and advanced computing technologies with strong emphasis on practical application and research.',
+        'Comprehensive engineering program focusing on computer systems, software development, and advanced computing technologies.',
       achievements: [
-        'Completed Final Year Project: Object Recognition (Computer Vision) for Medical Instruments',
-        'Applied computer vision and machine learning techniques to medical instrument recognition',
-        'Gained expertise in embedded systems and real-time computing',
+        'During this program, I joined robotics competition, worked as 3 interns in different companies, summer exchange in Japan, and held Japanese Culture Society',
       ],
       coursework: [
         'C/C++',
@@ -238,7 +235,8 @@ export const portfolioData = {
         'Embedded System',
       ],
       projects: [
-        'Final Year Project: Object Recognition (Computer Vision) for Medical Instruments',
+        'Applied computer vision and machine learning techniques to medical instrument recognition',
+        'Built responsive web application with React similar to this portfolio',
       ],
       gpa: '3.2/4.0',
     },
@@ -254,7 +252,15 @@ export const portfolioData = {
         'Achieved Distinction graduation',
         'Gained hands-on experience in automotive systems and mechanical engineering',
       ],
-      coursework: [],
+      coursework: [
+        'Internal Combustion Engine',
+        'Chassis Design',
+        'Suspension system',
+        'Brake System',
+        'Steering System',
+        'Transmission System',
+        'Electric Vehicle Technology',
+      ],
       projects: [
         'Autonomous parking with edge detection via Arduino, Raspberry Pi and OpenCV',
       ],
@@ -271,7 +277,7 @@ export const portfolioData = {
       duration: 'Aug 2025 - Present',
       location: 'Hong Kong',
       description:
-        'Revamped the legacy station computer system from Unix SunOS to Debian Linux with a modern UI for Light Rail operations. Develop Universal Station Computer for Automatic Fare Collection (AFC) System. Ensure the data transaction between smart card processing terminal, entry/exit gates, ticket machines, to the IT backend, Clearing House and Octopus Cards Ltd for smooth operations.',
+        'Develop Universal Station Computer for Automatic Fare Collection (AFC) System. Ensure the data transaction between smart card processing terminal, entry/exit gates, ticket machines, to the IT backend, Clearing House and Octopus Cards Ltd',
       achievements: [
         'Revamped legacy station computer system from Unix SunOS to Debian Linux for Light Rail',
         'Developed innovative ways to real-time monitor the transaction data',
@@ -293,9 +299,8 @@ export const portfolioData = {
       duration: 'May 2024 - Aug 2025',
       location: 'Hong Kong',
       description:
-        'Configured the MTR Main Control System (MCS) under M1218-20E for rail tunnel ventilation, building services, signaling, power lines, etc. Designed and built Human Machine Interface (HMI), Real-time Database and SCADA control system. Automated the configuration via Shell script, Jenkins and Git. Prepared the software specification, I/O mapping and logic. Integrated sub-systems (e.g. Signaling, BS, ECS...) to MCS.',
-      achievements: [
         'Configured control system for rail tunnel ventilation, building services, signaling, and power lines',
+      achievements: [
         'Designed and built Human Machine Interface (HMI) Real-time Database and SCADA control system',
         'Automated configuration processes via Shell script, Jenkins, and Git',
         'Prepared software specification, I/O mapping and logic',
@@ -319,7 +324,7 @@ export const portfolioData = {
       duration: 'June - July 2023',
       location: 'Hong Kong',
       description:
-        'Extracted railway signaling log to locate trains in Python.',
+        '',
       achievements: [
         'Developed solutions to locate trains from signaling data',
       ],
@@ -386,11 +391,10 @@ export const portfolioData = {
       duration: 'Jan. 2017 - Aug. 2020',
       location: 'Hong Kong',
       description:
-        'Performed vehicle maintenance, repair, and diagnostics for automotive systems.',
+        '',
       achievements: [
         'Performed vehicle maintenance and repair operations',
         'Diagnosed and resolved automotive system issues',
-        'Gained hands-on experience with mechanical and electrical vehicle systems',
       ],
       technologies: [
         'Automotive Systems',
@@ -449,6 +453,7 @@ export const portfolioData = {
       { name: 'Docker', level: 90 },
       { name: 'Git', level: 90 },
       { name: 'Jenkins', level: 90 },
+      { name: 'React', level: 90 },
     ],
     stats: [
       { key: 'experience', value: '2+', label: 'Years Experience' },
