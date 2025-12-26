@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
-import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 export default function Header() {
@@ -98,29 +97,6 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className='flex flex-col space-y-2 mt-4'>
-              {/* <Button */}
-              {/*   variant='outline' */}
-              {/*   size='sm' */}
-              {/*   onClick={() => { */}
-              {/*     window.open(portfolioData.hero.resumeUrl, '_blank'); */}
-              {/*     setIsMenuOpen(false); */}
-              {/*   }} */}
-              {/* > */}
-              {/*   Resume */}
-              {/* </Button> */}
-              <Button
-                size='sm'
-                onClick={() => {
-                  document
-                    .getElementById('contact')
-                    ?.scrollIntoView({ behavior: 'smooth' });
-                  setIsMenuOpen(false);
-                }}
-              >
-                Contact
-              </Button>
-            </div>
           </nav>
         </div>
       </Container>
