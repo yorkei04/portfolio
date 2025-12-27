@@ -390,7 +390,7 @@ function LeftColumn() {
           className='p-4 lg:p-6 animate-fade-in absolute w-full mtr-gate-container'
           style={{ top: `${mtrGateTop}px` }}
         >
-          <div className='w-3/4 space-y-4'>
+          <div className='w-2/3 space-y-4'>
             <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
               <Image
                 src='/image/mtr_gate_chiikawa.jpg'
@@ -401,7 +401,7 @@ function LeftColumn() {
               />
             </div>
             <p className='text-sm text-foreground/70 leading-relaxed text-left'>
-              First real exposure to payment transaction, where I learned how to ensure data uniqueness by cross‑checking usage data, audit logs, and message queues.
+              First exposure to payment transaction, where I learned how to ensure data uniqueness by checking usage data and audit logs.
             </p>
           </div>
         </div>
@@ -413,7 +413,7 @@ function LeftColumn() {
           className='p-4 lg:p-6 animate-fade-in absolute w-full mtr-scada-container'
           style={{ top: `${mtrScadaTop}px` }}
         >
-          <div className='w-3/4 space-y-4'>
+          <div className='w-2/3 space-y-4'>
             <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
               <Image
                 src='/image/mtr_scada.jpg'
@@ -424,7 +424,7 @@ function LeftColumn() {
               />
             </div>
             <p className='text-sm text-foreground/70 leading-relaxed text-left'>
-              First real exposure to a wide range of industrial‑grade electrical and mechanical systems, many of them safety‑critical.
+              First exposure to a wide range of industrial‑grade electrical and mechanical systems, many of them safety‑critical.
             </p>
           </div>
         </div>
@@ -436,7 +436,7 @@ function LeftColumn() {
           className='p-4 lg:p-6 animate-fade-in absolute w-full aecom-arcgis-container'
           style={{ top: `${aecomArcGisTop}px` }}
         >
-          <div className='w-3/4 space-y-4'>
+          <div className='w-2/3 space-y-4'>
             <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
               <Image
                 src='/image/AECOM_ArcGIS.jpg'
@@ -447,7 +447,7 @@ function LeftColumn() {
               />
             </div>
             <p className='text-sm text-foreground/70 leading-relaxed text-left'>
-              First hands‑on experience with the Microsoft stack, using C#, .NET, and MS SQL to turn ArcGIS files into queryable geospatial data.
+              First experience with the Microsoft stack, using C#, .NET, and MS SQL to convert ArcGIS files into queryable geospatial data.
             </p>
           </div>
         </div>
