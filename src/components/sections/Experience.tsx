@@ -88,6 +88,7 @@ interface ExperienceItemProps {
 function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
   return (
     <div
+      data-experience-id={experience.id}
       className={cn(
         'relative transition-all duration-1000',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',

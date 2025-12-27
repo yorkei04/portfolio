@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Kei - Full-Stack Developer & Game Developer',
+  title: 'Kei - Software | Control Engineer',
   description:
     'Interested in software, electronic, and control engineering',
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Kei' }],
   creator: 'Kei',
   openGraph: {
-    title: 'Kei - Software | Electronic | Control Engineer',
+    title: 'Kei - Software | Control Engineer',
     description:
       'Interested in software development, electronic engineering, and control engineering.',
     type: 'website',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kei - Full-Stack Developer & Game Developer',
+    title: 'Kei - Software | Control Engineer',
     description:
       'Interested in software development, electronic engineering, and control engineering.',
     creator: '@zkwokleung',

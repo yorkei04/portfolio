@@ -17,6 +17,9 @@ function LeftColumn() {
   const [isAboutInView, setIsAboutInView] = useState(false);
   const [roboconTop, setRoboconTop] = useState<number>(0);
   const isAboutInViewRef = useRef(false);
+  const [isExperienceInView, setIsExperienceInView] = useState(false);
+  const [mtrGateTop, setMtrGateTop] = useState<number>(0);
+  const isExperienceInViewRef = useRef(false);
 
   useEffect(() => {
     let aboutObserver: IntersectionObserver | null = null;
@@ -106,13 +109,83 @@ function LeftColumn() {
     };
   }, []);
 
+  useEffect(() => {
+    let experienceObserver: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateMtrGatePosition = () => {
+      // Find the specific experience item (Operations Engineering Associate with id='1')
+      const experienceItem = document.querySelector('[data-experience-id="1"]');
+      const column = document.querySelector('aside');
+      if (!experienceItem || !column) return;
+
+      // Get the position of the specific experience item
+      const experienceItemRect = experienceItem.getBoundingClientRect();
+      const experienceItemTop = window.scrollY + experienceItemRect.top;
+      
+      // Get the position of the column relative to the document
+      const columnRect = column.getBoundingClientRect();
+      const columnTop = window.scrollY + columnRect.top;
+      
+      // Calculate the offset relative to the column to align with the experience item top
+      const offset = experienceItemTop - columnTop;
+      setMtrGateTop(Math.max(0, offset));
+    };
+
+    const setupExperienceObserver = () => {
+      const experienceElement = document.getElementById('experience');
+      if (!experienceElement) {
+        timeoutId = setTimeout(setupExperienceObserver, 100);
+        return;
+      }
+
+      updateMtrGatePosition();
+
+      experienceObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const isIntersecting = entry.isIntersecting;
+            isExperienceInViewRef.current = isIntersecting;
+            setIsExperienceInView(isIntersecting);
+            if (isIntersecting) {
+              requestAnimationFrame(updateMtrGatePosition);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px',
+        },
+      );
+
+      experienceObserver.observe(experienceElement);
+    };
+
+    const handleScroll = () => {
+      if (isExperienceInViewRef.current) {
+        updateMtrGatePosition();
+      }
+    };
+
+    setupExperienceObserver();
+    window.addEventListener('resize', updateMtrGatePosition);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (experienceObserver) experienceObserver.disconnect();
+      window.removeEventListener('resize', updateMtrGatePosition);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
 
   return (
-    <aside className='hidden lg:block lg:col-span-4 xl:col-span-5 relative'>
+    <aside className='hidden lg:block lg:col-span-4 xl:col-span-5 relative bg-background'>
       {/* Default MTR OCC - Not sticky, normal flow */}
       <div className='p-4 lg:p-6 min-h-screen flex items-center justify-center mtr-occ-container'>
         <div className='w-full space-y-4'>
-          <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+          <div className='w-full aspect-square bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
             <Image
               src='/image/mtr_occ.jpeg'
               alt='MTR OCC'
@@ -135,7 +208,7 @@ function LeftColumn() {
           style={{ top: `${roboconTop}px` }}
         >
           <div className='w-full space-y-4'>
-            <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+            <div className='w-full aspect-square bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
               <Image
                 src='/image/robocon.jpeg'
                 alt='Robocon Hong Kong Champion 2021'
@@ -146,6 +219,29 @@ function LeftColumn() {
             </div>
             <p className='text-sm text-foreground/70 leading-relaxed text-center'>
               While studying Computer Engineering, I explored hardware–software integration in robotics and helped my university team win Robocon Hong Kong 2021. I designed the pick‑and‑place mechanism for the arrow‑shooter.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* MTR Gate Image - Positioned next to Operations Engineering Associate experience */}
+      {isExperienceInView && (
+        <div
+          className='p-4 lg:p-6 animate-fade-in absolute w-full mtr-gate-container'
+          style={{ top: `${mtrGateTop}px` }}
+        >
+          <div className='w-3/4 space-y-4'>
+            <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
+              <Image
+                src='/image/mtr_gate_chiikawa.jpg'
+                alt='MTR Gate'
+                fill
+                className='object-cover'
+                sizes='(max-width: 1024px) 0vw, (max-width: 1280px) 25vw, 32vw'
+              />
+            </div>
+            <p className='text-sm text-foreground/70 leading-relaxed text-left'>
+              First real exposure to payment transaction data, where I learned how to ensure data uniqueness by cross‑checking usage data, audit logs, and message queues.
             </p>
           </div>
         </div>

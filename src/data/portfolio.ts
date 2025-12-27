@@ -176,7 +176,7 @@ export const portfolioData = {
       title: 'Mechanical Design in CU Robocon Team 2021',
       description:
         'Design and built pick-and-place mechanism for the arrow-shoot with Solidwork, CNC machine, 3D printer, Arduino finite state machine. Won the championship and represent Hong Kong to participate Asia-Pacific Robocon Contest.',
-      image: '/image/robocon2.png',
+      image: '/image/robocon2.jpg',
       technologies: [
         'SolidWorks',
         'CNC Machining',
