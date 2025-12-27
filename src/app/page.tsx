@@ -665,36 +665,6 @@ function SurgicalOverlay() {
 }
 
 function MobileRoboconPhoto() {
-  const [isAboutInView, setIsAboutInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsAboutInView(entry.isIntersecting);
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: '0px',
-      },
-    );
-
-    const aboutElement = document.getElementById('about');
-    if (aboutElement) {
-      observer.observe(aboutElement);
-    }
-
-    return () => {
-      if (aboutElement) {
-        observer.unobserve(aboutElement);
-      }
-      observer.disconnect();
-    };
-  }, []);
-
-  if (!isAboutInView) return null;
-
   return (
     <div className='lg:hidden px-4 py-8'>
       <div className='w-full space-y-4 max-w-md mx-auto'>
