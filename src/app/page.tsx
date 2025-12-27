@@ -519,7 +519,7 @@ function LightRailOverlay() {
           />
         </div>
         <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          The station control computer can remotely monitor fare transactions, update fare tables, and switch each entry/exit processor between in‑service and out‑of‑service.
+          The station computer can remotely monitor each entry/exit processor fare transactions, update fare tables, and switch between in‑service and out‑of‑service.
         </p>
       </div>
     </div>
@@ -747,7 +747,7 @@ function RoboconOverlay() {
           />
         </div>
         <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          Won the championship and represent Hong Kong to participate Asia-Pacific Robocon Contest.
+          Won the championship at Hong Kong Contest and represented Hong Kong in the Asia‑Pacific Robocon Contest as part of a large, multidisciplinary robotics team of over 20 members. 
         </p>
       </div>
     </div>
