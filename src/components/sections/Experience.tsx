@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
 import Badge from '@/components/ui/Badge';
@@ -158,6 +159,64 @@ function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
             </div>
           </div>
         </div>
+
+        {/* Mobile Photos - Only visible on mobile, hidden on desktop */}
+        {experience.id === '1' && (
+          <div className='lg:hidden mt-6 px-4'>
+            <div className='w-full space-y-4 max-w-md mx-auto'>
+              <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                <Image
+                  src='/image/mtr_gate_chiikawa.jpg'
+                  alt='MTR Gate'
+                  fill
+                  className='object-cover'
+                  sizes='(max-width: 1024px) 100vw, 0vw'
+                />
+              </div>
+              <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+                First real exposure to payment transaction, where I learned how to ensure data uniqueness by cross‑checking usage data, audit logs, and message queues.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {experience.id === '2' && (
+          <div className='lg:hidden mt-6 px-4'>
+            <div className='w-full space-y-4 max-w-md mx-auto'>
+              <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                <Image
+                  src='/image/mtr_scada.jpg'
+                  alt='MTR SCADA'
+                  fill
+                  className='object-cover'
+                  sizes='(max-width: 1024px) 100vw, 0vw'
+                />
+              </div>
+              <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+                First real exposure to a wide range of industrial‑grade electrical and mechanical systems, many of them safety‑critical.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {experience.id === '4' && (
+          <div className='lg:hidden mt-6 px-4'>
+            <div className='w-full space-y-4 max-w-md mx-auto'>
+              <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                <Image
+                  src='/image/AECOM_ArcGIS.jpg'
+                  alt='AECOM ArcGIS'
+                  fill
+                  className='object-cover'
+                  sizes='(max-width: 1024px) 100vw, 0vw'
+                />
+              </div>
+              <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+                First hands‑on experience with the Microsoft stack, using C#, .NET, and MS SQL to turn ArcGIS files into queryable geospatial data.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
