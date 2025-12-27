@@ -123,11 +123,10 @@ export const portfolioData = {
         'Revamped the legacy station computer system from Unix SunOS to Debian Linux with a modern UI for station operators. Ensured secure, reliable communication and transaction data flow between entry/exit processors, contactless smart card processor terminals, ticket machines, IT backend, and financial clearing house, while improved user experience for light rail operations.',
       image: '/image/mtr_light_rail.png',
       technologies: [
-        'Automatic Fare Collection (AFC) System',
         'Debian Linux',
         'Unix SunOS Migration',
-        'UI/UX Design',
-        'Contactless Smart Card',
+        'Real-time Data Processing',
+        'NFC',
       ],
       liveUrl: '#',
       referenceUrl: '#',
@@ -284,13 +283,10 @@ export const portfolioData = {
         'Developed innovative ways to real-time monitor the transaction data',
       ],
       technologies: [
-        'AFC Systems',
         'Debian Linux',
         'Unix SunOS Migration',
-        'UI/UX Design',
-        'System Integration',
         'Real-time Data Processing',
-        'Contactless Smart Card',
+        'NFC',
       ],
     },
     {

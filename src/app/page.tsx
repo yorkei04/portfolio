@@ -519,7 +519,7 @@ function LightRailOverlay() {
           />
         </div>
         <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          Revamped the legacy station computer system from Unix SunOS to Debian Linux with a modern new UI for station operators
+          The station control computer can remotely monitor fare transactions, update fare tables, and switch each entry/exit processor between in‑service and out‑of‑service.
         </p>
       </div>
     </div>
@@ -588,7 +588,7 @@ function McsOverlay() {
           />
         </div>
         <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          The main screen webapp of MTR SCADA Main Control System
+        The main-screen web application of the MTR SCADA Main Control System provides a centralized, real‑time overview of railway assets, alarms, and operating status across the network.
         </p>
       </div>
     </div>
@@ -657,7 +657,7 @@ function SurgicalOverlay() {
           />
         </div>
         <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          High-precision surgical counting computer vision model achieving over 99% accuracy, deployed to a cross-platform mobile application
+          The confusion matrix summarizes the performance of the trained model in classifying surgical instruments. On the right, all instruments are arranged in a dedicated washing tray used in the hospital's sterilization area. Bounding boxes indicate the model's detections and label each instrument type within the tray.
         </p>
       </div>
     </div>
