@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Kei - Software | Control Engineer',
+  title: 'Kei - Portfolio',
   description:
     'Interested in software, electronic, and control engineering',
   keywords: [

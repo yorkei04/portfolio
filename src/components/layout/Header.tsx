@@ -24,8 +24,8 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-slate-900/95 backdrop-blur-sm border-b border-slate-800/50 shadow-sm'
-          : 'bg-slate-900/95 backdrop-blur-sm',
+          ? 'bg-slate-900/95 border-b border-slate-800/50 shadow-sm'
+          : 'bg-slate-900/95',
       )}
     >
       <Container>
