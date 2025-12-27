@@ -664,6 +664,57 @@ function SurgicalOverlay() {
   );
 }
 
+function MobileRoboconPhoto() {
+  const [isAboutInView, setIsAboutInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsAboutInView(entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px',
+      },
+    );
+
+    const aboutElement = document.getElementById('about');
+    if (aboutElement) {
+      observer.observe(aboutElement);
+    }
+
+    return () => {
+      if (aboutElement) {
+        observer.unobserve(aboutElement);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  if (!isAboutInView) return null;
+
+  return (
+    <div className='lg:hidden px-4 py-8'>
+      <div className='w-full space-y-4 max-w-md mx-auto'>
+        <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+          <Image
+            src='/image/robocon.jpeg'
+            alt='Robocon Hong Kong Champion 2021'
+            fill
+            className='object-cover'
+            sizes='(max-width: 1024px) 100vw, 0vw'
+          />
+        </div>
+        <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+          While studying Computer Engineering, I explored hardware–software integration in robotics and helped my university team win Robocon Hong Kong 2021. I designed the pick‑and‑place mechanism for the arrow‑shooter.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function RoboconOverlay() {
   const { hoveredProjectId } = useProjectHover();
   const isRoboconHovered = hoveredProjectId === '4';
@@ -761,6 +812,8 @@ export default function Home() {
               </div>
             </div>
             <About />
+            {/* Mobile Robocon Photo - Only visible on mobile, hidden on desktop */}
+            <MobileRoboconPhoto />
             <Projects />
             <Experience />
             <Education />
