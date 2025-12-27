@@ -147,6 +147,7 @@ export const portfolioData = {
         'Jenkins',
         'Git',
         'Shell Script',
+        'Modbus',
       ],
       liveUrl: '#',
       referenceUrl: 'https://www.mtr.com.hk/en/corporate/tenders/M1218-20E.html',
@@ -343,10 +344,11 @@ export const portfolioData = {
       description:
         '',
       achievements: [
-        'Converted ArcGIS and AutoCAD data formats into MS SQL database',
+        'Converted ArcGIS and AutoCAD data into MS SQL database',
       ],
       technologies: [
         'C#',
+        '.NET',
         'MS SQL',
         'ArcGIS',
         'AutoCAD',

@@ -20,6 +20,12 @@ function LeftColumn() {
   const [isExperienceInView, setIsExperienceInView] = useState(false);
   const [mtrGateTop, setMtrGateTop] = useState<number>(0);
   const isExperienceInViewRef = useRef(false);
+  const [isHitachiRailInView, setIsHitachiRailInView] = useState(false);
+  const [mtrScadaTop, setMtrScadaTop] = useState<number>(0);
+  const isHitachiRailInViewRef = useRef(false);
+  const [isAecomInView, setIsAecomInView] = useState(false);
+  const [aecomArcGisTop, setAecomArcGisTop] = useState<number>(0);
+  const isAecomInViewRef = useRef(false);
 
   useEffect(() => {
     let aboutObserver: IntersectionObserver | null = null;
@@ -119,16 +125,21 @@ function LeftColumn() {
       const column = document.querySelector('aside');
       if (!experienceItem || !column) return;
 
-      // Get the position of the specific experience item
-      const experienceItemRect = experienceItem.getBoundingClientRect();
-      const experienceItemTop = window.scrollY + experienceItemRect.top;
+      // Find the card frame inside the experience item
+      const cardFrame = experienceItem.querySelector('.bg-background.border');
+      const targetElement = cardFrame || experienceItem;
+      
+      // Get the position of the card frame
+      const targetRect = targetElement.getBoundingClientRect();
+      const targetTop = window.scrollY + targetRect.top;
       
       // Get the position of the column relative to the document
       const columnRect = column.getBoundingClientRect();
       const columnTop = window.scrollY + columnRect.top;
       
-      // Calculate the offset relative to the column to align with the experience item top
-      const offset = experienceItemTop - columnTop;
+      // Calculate the offset relative to the column to align with the card frame top
+      // Subtract approximately one line height (24px) to move it higher
+      const offset = targetTop - columnTop - 24;
       setMtrGateTop(Math.max(0, offset));
     };
 
@@ -179,6 +190,155 @@ function LeftColumn() {
     };
   }, []);
 
+  useEffect(() => {
+    let experienceObserver: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateMtrScadaPosition = () => {
+      // Find the specific experience item (Associate Software Engineer at Hitachi Rail with id='2')
+      const experienceItem = document.querySelector('[data-experience-id="2"]');
+      const column = document.querySelector('aside');
+      if (!experienceItem || !column) return;
+
+      // Find the card frame inside the experience item
+      const cardFrame = experienceItem.querySelector('.bg-background.border');
+      const targetElement = cardFrame || experienceItem;
+      
+      // Get the position of the card frame
+      const targetRect = targetElement.getBoundingClientRect();
+      const targetTop = window.scrollY + targetRect.top;
+      
+      // Get the position of the column relative to the document
+      const columnRect = column.getBoundingClientRect();
+      const columnTop = window.scrollY + columnRect.top;
+      
+      // Calculate the offset relative to the column to align with the card frame top
+      // Subtract approximately one line height (24px) to move it higher
+      const offset = targetTop - columnTop - 24;
+      setMtrScadaTop(Math.max(0, offset));
+    };
+
+    const setupExperienceObserver = () => {
+      const experienceElement = document.getElementById('experience');
+      if (!experienceElement) {
+        timeoutId = setTimeout(setupExperienceObserver, 100);
+        return;
+      }
+
+      updateMtrScadaPosition();
+
+      experienceObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const isIntersecting = entry.isIntersecting;
+            isHitachiRailInViewRef.current = isIntersecting;
+            setIsHitachiRailInView(isIntersecting);
+            if (isIntersecting) {
+              requestAnimationFrame(updateMtrScadaPosition);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px',
+        },
+      );
+
+      experienceObserver.observe(experienceElement);
+    };
+
+    const handleScroll = () => {
+      if (isHitachiRailInViewRef.current) {
+        updateMtrScadaPosition();
+      }
+    };
+
+    setupExperienceObserver();
+    window.addEventListener('resize', updateMtrScadaPosition);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (experienceObserver) experienceObserver.disconnect();
+      window.removeEventListener('resize', updateMtrScadaPosition);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    let experienceObserver: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateAecomArcGisPosition = () => {
+      // Find the specific experience item (Programmer Trainee at AECOM with id='4')
+      const experienceItem = document.querySelector('[data-experience-id="4"]');
+      const column = document.querySelector('aside');
+      if (!experienceItem || !column) return;
+
+      // Find the card frame inside the experience item
+      const cardFrame = experienceItem.querySelector('.bg-background.border');
+      const targetElement = cardFrame || experienceItem;
+      
+      // Get the position of the card frame
+      const targetRect = targetElement.getBoundingClientRect();
+      const targetTop = window.scrollY + targetRect.top;
+      
+      // Get the position of the column relative to the document
+      const columnRect = column.getBoundingClientRect();
+      const columnTop = window.scrollY + columnRect.top;
+      
+      // Calculate the offset relative to the column to align with the card frame top
+      // Subtract approximately one line height (24px) to move it higher
+      const offset = targetTop - columnTop - 24;
+      setAecomArcGisTop(Math.max(0, offset));
+    };
+
+    const setupExperienceObserver = () => {
+      const experienceElement = document.getElementById('experience');
+      if (!experienceElement) {
+        timeoutId = setTimeout(setupExperienceObserver, 100);
+        return;
+      }
+
+      updateAecomArcGisPosition();
+
+      experienceObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const isIntersecting = entry.isIntersecting;
+            isAecomInViewRef.current = isIntersecting;
+            setIsAecomInView(isIntersecting);
+            if (isIntersecting) {
+              requestAnimationFrame(updateAecomArcGisPosition);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px',
+        },
+      );
+
+      experienceObserver.observe(experienceElement);
+    };
+
+    const handleScroll = () => {
+      if (isAecomInViewRef.current) {
+        updateAecomArcGisPosition();
+      }
+    };
+
+    setupExperienceObserver();
+    window.addEventListener('resize', updateAecomArcGisPosition);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (experienceObserver) experienceObserver.disconnect();
+      window.removeEventListener('resize', updateAecomArcGisPosition);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <aside className='hidden lg:block lg:col-span-4 xl:col-span-5 relative bg-background'>
@@ -241,7 +401,53 @@ function LeftColumn() {
               />
             </div>
             <p className='text-sm text-foreground/70 leading-relaxed text-left'>
-              First real exposure to payment transaction data, where I learned how to ensure data uniqueness by cross‑checking usage data, audit logs, and message queues.
+              First real exposure to payment transaction, where I learned how to ensure data uniqueness by cross‑checking usage data, audit logs, and message queues.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* MTR SCADA Image - Positioned next to Associate Software Engineer at Hitachi Rail experience */}
+      {isHitachiRailInView && (
+        <div
+          className='p-4 lg:p-6 animate-fade-in absolute w-full mtr-scada-container'
+          style={{ top: `${mtrScadaTop}px` }}
+        >
+          <div className='w-3/4 space-y-4'>
+            <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
+              <Image
+                src='/image/mtr_scada.jpg'
+                alt='MTR SCADA'
+                fill
+                className='object-cover'
+                sizes='(max-width: 1024px) 0vw, (max-width: 1280px) 25vw, 32vw'
+              />
+            </div>
+            <p className='text-sm text-foreground/70 leading-relaxed text-left'>
+              First real exposure to a wide range of industrial‑grade electrical and mechanical systems, many of them safety‑critical.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* AECOM ArcGIS Image - Positioned next to Programmer Trainee at AECOM experience */}
+      {isAecomInView && (
+        <div
+          className='p-4 lg:p-6 animate-fade-in absolute w-full aecom-arcgis-container'
+          style={{ top: `${aecomArcGisTop}px` }}
+        >
+          <div className='w-3/4 space-y-4'>
+            <div className='w-full aspect-[3/2] bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
+              <Image
+                src='/image/AECOM_ArcGIS.jpg'
+                alt='AECOM ArcGIS'
+                fill
+                className='object-cover'
+                sizes='(max-width: 1024px) 0vw, (max-width: 1280px) 25vw, 32vw'
+              />
+            </div>
+            <p className='text-sm text-foreground/70 leading-relaxed text-left'>
+              First hands‑on experience with the Microsoft stack, using C#, .NET, and MS SQL to turn ArcGIS files into queryable geospatial data.
             </p>
           </div>
         </div>
