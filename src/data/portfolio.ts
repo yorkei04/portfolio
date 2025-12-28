@@ -4,14 +4,14 @@ export const portfolioData = {
   name: 'Kei',
   title: 'Software Engineer',
   location: 'Hong Kong',
-  availability: 'Open to new opportunities',
+  availability: 'Open to coffee chats',
   email: 'hungkeiyau@gmail.com',
   phone: '+852 5313 6347',
 
   // Hero Section
   hero: {
-    greeting: "Hi, I'm",
-    tagline: 'Bridging software and hardware in control',
+    greeting: "Welcome to my portfolio, I'm",
+    tagline: 'Bridging software & hardware in control',
     description:
       'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO.',
   },
