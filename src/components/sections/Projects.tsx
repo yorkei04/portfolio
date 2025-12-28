@@ -93,27 +93,19 @@ interface ProjectCardProps {
   index: number;
 }
 
-// Mapping of project IDs to their overlay images and descriptions
-const projectOverlayData: Record<string, { image: string; description: string; alt: string }> = {
+// Mapping of project IDs to their overlay descriptions
+const projectOverlayData: Record<string, { description: string }> = {
   '1': {
-    image: '/image/mtr_light_rail.png',
     description: 'The station computer can remotely monitor each entry/exit processor fare transactions, update fare tables, and switch between in‑service and out‑of‑service.',
-    alt: 'Revamp Station Computer to Light Rail',
   },
   '2': {
-    image: '/image/mcs.png',
     description: 'The main-screen web application of the MTR SCADA Main Control System provides a centralized, real‑time overview of railway assets, alarms, and operating status across the network.',
-    alt: 'MCS System',
   },
   '3': {
-    image: '/image/surgical.png',
     description: 'The confusion matrix summarizes the performance of the trained model in classifying surgical instruments. On the right, all instruments are arranged in a dedicated washing tray used in the hospital\'s sterilization area. Bounding boxes indicate the model\'s detections and label each instrument type within the tray.',
-    alt: 'Surgical Counting Computer Vision System',
   },
   '4': {
-    image: '/image/robocon3.jpg',
     description: 'Won the championship at Hong Kong Contest and represented Hong Kong in the Asia‑Pacific Robocon Contest as part of a large, multidisciplinary robotics team of over 20 members.',
-    alt: 'Mechanical Design in Robocon 2021',
   },
 };
 
@@ -217,6 +209,13 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             )}
           </div>
 
+          {/* Mobile-only description below preview photo */}
+          {overlayData && (
+            <p className='lg:hidden text-sm text-foreground/70 leading-relaxed mb-4'>
+              {overlayData.description}
+            </p>
+          )}
+
           <CardTitle className='group-hover:text-foreground/80 transition-colors'>
             {project.title}
           </CardTitle>
@@ -283,26 +282,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         )}
         </Card>
       </div>
-
-      {/* Mobile-only image and description - shown below project card */}
-      {overlayData && (
-        <div className='lg:hidden mt-6 px-4'>
-          <div className='w-full space-y-4 max-w-md mx-auto'>
-            <div className='w-full min-h-[300px] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
-              <Image
-                src={overlayData.image}
-                alt={overlayData.alt}
-                fill
-                className='object-contain'
-                sizes='(max-width: 1024px) 100vw, 0vw'
-              />
-            </div>
-            <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-              {overlayData.description}
-            </p>
-          </div>
-        </div>
-      )}
     </>
   );
 }
