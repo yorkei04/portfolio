@@ -93,6 +93,30 @@ interface ProjectCardProps {
   index: number;
 }
 
+// Mapping of project IDs to their overlay images and descriptions
+const projectOverlayData: Record<string, { image: string; description: string; alt: string }> = {
+  '1': {
+    image: '/image/mtr_light_rail.png',
+    description: 'The station computer can remotely monitor each entry/exit processor fare transactions, update fare tables, and switch between in‑service and out‑of‑service.',
+    alt: 'Revamp Station Computer to Light Rail',
+  },
+  '2': {
+    image: '/image/mcs.png',
+    description: 'The main-screen web application of the MTR SCADA Main Control System provides a centralized, real‑time overview of railway assets, alarms, and operating status across the network.',
+    alt: 'MCS System',
+  },
+  '3': {
+    image: '/image/surgical.png',
+    description: 'The confusion matrix summarizes the performance of the trained model in classifying surgical instruments. On the right, all instruments are arranged in a dedicated washing tray used in the hospital\'s sterilization area. Bounding boxes indicate the model\'s detections and label each instrument type within the tray.',
+    alt: 'Surgical Counting Computer Vision System',
+  },
+  '4': {
+    image: '/image/robocon3.jpg',
+    description: 'Won the championship at Hong Kong Contest and represented Hong Kong in the Asia‑Pacific Robocon Contest as part of a large, multidisciplinary robotics team of over 20 members.',
+    alt: 'Mechanical Design in Robocon 2021',
+  },
+};
+
 function ProjectCard({ project, index }: ProjectCardProps) {
   const { setHoveredProjectId } = useProjectHover();
   const [imageError, setImageError] = useState(false);
@@ -103,160 +127,183 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   const hasValidLiveUrl = isValidUrl(project.liveUrl);
   const hasValidGithubUrl = isValidUrl(project.githubUrl);
   const hasValidReferenceUrl = isValidUrl(project.referenceUrl);
+  const overlayData = projectOverlayData[project.id];
 
   return (
-    <div
-      onMouseEnter={() => setHoveredProjectId(project.id)}
-      onMouseLeave={() => setHoveredProjectId(null)}
-      data-project-id={project.id}
-    >
-      <Card
-        hover
-        className={cn(
-          'group relative overflow-hidden transition-all duration-300',
-          'hover:shadow-lg hover:shadow-foreground/5',
-        )}
-        style={{
-          animationDelay: `${index * 100}ms`,
-        }}
+    <>
+      <div
+        onMouseEnter={() => setHoveredProjectId(project.id)}
+        onMouseLeave={() => setHoveredProjectId(null)}
+        data-project-id={project.id}
       >
-      {project.featured && (
-        <div className='absolute top-4 right-4 z-10'>
-          <Badge variant='default' className='text-xs'>
-            Featured
-          </Badge>
-        </div>
-      )}
-
-      <CardHeader>
-        {/* Project Image Preview */}
-        <div className='w-full h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-300'>
-          {project.image && !imageError ? (
-            <>
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                onError={() => setImageError(true)}
-              />
-              {/* Overlay with links - only show if we have valid links */}
-              {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
-                <div className='absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
-                  {hasValidLiveUrl && (
-                    <Button
-                      size='sm'
-                      onClick={() => window.open(project.liveUrl, '_blank')}
-                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'
-                    >
-                      <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                      Live Demo
-                    </Button>
-                  )}
-                  {hasValidGithubUrl && (
-                    <Button
-                      variant='outline'
-                      size='sm'
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'
-                    >
-                      <GitHubIcon className='w-4 h-4 mr-2' />
-                      Code
-                    </Button>
-                  )}
-                  {hasValidReferenceUrl && (
-                    <Button
-                      variant='outline'
-                      size='sm'
-                      onClick={() => window.open(project.referenceUrl, '_blank')}
-                      className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'
-                    >
-                      <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                      Reference
-                    </Button>
-                  )}
-                </div>
-              )}
-            </>
-          ) : (
-            <div className='absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center'>
-              <div className='text-4xl font-bold text-foreground/30'>
-                {project.title
-                  .split(' ')
-                  .map((word) => word[0])
-                  .join('')}
-              </div>
-            </div>
+        <Card
+          hover
+          className={cn(
+            'group relative overflow-hidden transition-all duration-300',
+            'hover:shadow-lg hover:shadow-foreground/5',
           )}
-        </div>
-
-        <CardTitle className='group-hover:text-foreground/80 transition-colors'>
-          {project.title}
-        </CardTitle>
-        <CardDescription>{project.description}</CardDescription>
-      </CardHeader>
-
-      <CardContent>
-        <div className='flex flex-wrap gap-2'>
-          {project.technologies.map((tech, techIndex) => (
-            <Badge key={techIndex} variant='secondary' className='text-xs'>
-              {tech}
+          style={{
+            animationDelay: `${index * 100}ms`,
+          }}
+        >
+        {project.featured && (
+          <div className='absolute top-4 right-4 z-10'>
+            <Badge variant='default' className='text-xs'>
+              Featured
             </Badge>
-          ))}
-        </div>
-      </CardContent>
+          </div>
+        )}
 
-      {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
-        <CardFooter>
-          <div className='flex gap-2 w-full'>
-            {hasValidLiveUrl && (
-              <Button
-                size='sm'
-                variant='outline'
-                onClick={() => window.open(project.liveUrl, '_blank')}
-                className={cn(
-                  'flex items-center justify-center',
-                  (hasValidGithubUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
+        <CardHeader>
+          {/* Project Image Preview */}
+          <div className='w-full h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-300'>
+            {project.image && !imageError ? (
+              <>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className='object-cover'
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                  onError={() => setImageError(true)}
+                />
+                {/* Overlay with links - only show if we have valid links */}
+                {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
+                  <div className='absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
+                    {hasValidLiveUrl && (
+                      <Button
+                        size='sm'
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'
+                      >
+                        <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                        Live Demo
+                      </Button>
+                    )}
+                    {hasValidGithubUrl && (
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'
+                      >
+                        <GitHubIcon className='w-4 h-4 mr-2' />
+                        Code
+                      </Button>
+                    )}
+                    {hasValidReferenceUrl && (
+                      <Button
+                        variant='outline'
+                        size='sm'
+                        onClick={() => window.open(project.referenceUrl, '_blank')}
+                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'
+                      >
+                        <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                        Reference
+                      </Button>
+                    )}
+                  </div>
                 )}
-              >
-                <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                Demo
-              </Button>
-            )}
-            {hasValidGithubUrl && (
-              <Button
-                size='sm'
-                variant='outline'
-                onClick={() => window.open(project.githubUrl, '_blank')}
-                className={cn(
-                  'flex items-center justify-center',
-                  (hasValidLiveUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
-                )}
-              >
-                <GitHubIcon className='w-4 h-4 mr-2' />
-                Code
-              </Button>
-            )}
-            {hasValidReferenceUrl && (
-              <Button
-                size='sm'
-                variant='outline'
-                onClick={() => window.open(project.referenceUrl, '_blank')}
-                className={cn(
-                  'flex items-center justify-center',
-                  (hasValidLiveUrl || hasValidGithubUrl) ? 'flex-1' : 'w-full',
-                )}
-              >
-                <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                Reference
-              </Button>
+              </>
+            ) : (
+              <div className='absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center'>
+                <div className='text-4xl font-bold text-foreground/30'>
+                  {project.title
+                    .split(' ')
+                    .map((word) => word[0])
+                    .join('')}
+                </div>
+              </div>
             )}
           </div>
-        </CardFooter>
+
+          <CardTitle className='group-hover:text-foreground/80 transition-colors'>
+            {project.title}
+          </CardTitle>
+          <CardDescription>{project.description}</CardDescription>
+        </CardHeader>
+
+        <CardContent>
+          <div className='flex flex-wrap gap-2'>
+            {project.technologies.map((tech, techIndex) => (
+              <Badge key={techIndex} variant='secondary' className='text-xs'>
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+
+        {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
+          <CardFooter>
+            <div className='flex gap-2 w-full'>
+              {hasValidLiveUrl && (
+                <Button
+                  size='sm'
+                  variant='outline'
+                  onClick={() => window.open(project.liveUrl, '_blank')}
+                  className={cn(
+                    'flex items-center justify-center',
+                    (hasValidGithubUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
+                  )}
+                >
+                  <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                  Demo
+                </Button>
+              )}
+              {hasValidGithubUrl && (
+                <Button
+                  size='sm'
+                  variant='outline'
+                  onClick={() => window.open(project.githubUrl, '_blank')}
+                  className={cn(
+                    'flex items-center justify-center',
+                    (hasValidLiveUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
+                  )}
+                >
+                  <GitHubIcon className='w-4 h-4 mr-2' />
+                  Code
+                </Button>
+              )}
+              {hasValidReferenceUrl && (
+                <Button
+                  size='sm'
+                  variant='outline'
+                  onClick={() => window.open(project.referenceUrl, '_blank')}
+                  className={cn(
+                    'flex items-center justify-center',
+                    (hasValidLiveUrl || hasValidGithubUrl) ? 'flex-1' : 'w-full',
+                  )}
+                >
+                  <ExternalLinkIcon className='w-4 h-4 mr-2' />
+                  Reference
+                </Button>
+              )}
+            </div>
+          </CardFooter>
+        )}
+        </Card>
+      </div>
+
+      {/* Mobile-only image and description - shown below project card */}
+      {overlayData && (
+        <div className='lg:hidden mt-6 px-4'>
+          <div className='w-full space-y-4 max-w-md mx-auto'>
+            <div className='w-full min-h-[300px] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+              <Image
+                src={overlayData.image}
+                alt={overlayData.alt}
+                fill
+                className='object-contain'
+                sizes='(max-width: 1024px) 100vw, 0vw'
+              />
+            </div>
+            <p className='text-sm text-foreground/70 leading-relaxed text-center'>
+              {overlayData.description}
+            </p>
+          </div>
+        </div>
       )}
-      </Card>
-    </div>
+    </>
   );
 }
 
