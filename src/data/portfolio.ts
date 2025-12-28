@@ -2,7 +2,7 @@
 export const portfolioData = {
   // Personal Information
   name: 'Kei',
-  title: 'Software Developer',
+  title: 'Software Engineer',
   location: 'Hong Kong',
   availability: 'Open to new opportunities',
   email: 'hungkeiyau@gmail.com',
@@ -13,7 +13,7 @@ export const portfolioData = {
     greeting: "Hi, I'm",
     tagline: 'Bridging software and hardware in control',
     description:
-      'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO .',
+      'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO.',
   },
 
   // Navigation
