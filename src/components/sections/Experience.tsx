@@ -162,8 +162,8 @@ function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
 
         {/* Mobile Photos - Only visible on mobile, hidden on desktop */}
         {experience.id === '1' && (
-          <div className='lg:hidden mt-6 px-4'>
-            <div className='w-4/5 space-y-4 max-w-md mx-auto'>
+          <div className='lg:hidden mt-6 px-2'>
+            <div className='w-full space-y-4 mx-auto'>
               <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
                 <Image
                   src='/image/mtr_gate_chiikawa.jpg'
@@ -181,8 +181,8 @@ function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
         )}
 
         {experience.id === '2' && (
-          <div className='lg:hidden mt-6 px-4'>
-            <div className='w-4/5 space-y-4 max-w-md mx-auto'>
+          <div className='lg:hidden mt-6 px-2'>
+            <div className='w-full space-y-4 mx-auto'>
               <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
                 <Image
                   src='/image/mtr_scada.jpg'
@@ -200,8 +200,8 @@ function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
         )}
 
         {experience.id === '4' && (
-          <div className='lg:hidden mt-6 px-4'>
-            <div className='w-4/5 space-y-4 max-w-md mx-auto'>
+          <div className='lg:hidden mt-6 px-2'>
+            <div className='w-full space-y-4 mx-auto'>
               <div className='w-full aspect-[3/2] bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
                 <Image
                   src='/image/AECOM_ArcGIS.jpg'
