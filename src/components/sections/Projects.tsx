@@ -13,6 +13,7 @@ import Card, {
 import Badge from '@/components/ui/Badge';
 import { useProjectHover } from '@/contexts/ProjectHoverContext';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export default function Projects() {
   const [isVisible, setIsVisible] = useState(false);
@@ -176,13 +177,55 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </CardHeader>
 
         <CardContent>
-          <div className='flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 mb-4'>
             {project.technologies.map((tech, techIndex) => (
               <Badge key={techIndex} variant='secondary' className='text-xs'>
                 {tech}
               </Badge>
             ))}
           </div>
+          
+          {/* Project Links */}
+          {(hasValidGithubUrl || hasValidLiveUrl || hasValidReferenceUrl) && (
+            <div className='flex gap-3 pt-2 border-t border-foreground/10'>
+              {hasValidGithubUrl && (
+                <Link
+                  href={project.githubUrl!}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <GitHubIcon className='w-4 h-4' />
+                  <span>GitHub</span>
+                </Link>
+              )}
+              {hasValidLiveUrl && (
+                <Link
+                  href={project.liveUrl!}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <ExternalLinkIcon className='w-4 h-4' />
+                  <span>Live Demo</span>
+                </Link>
+              )}
+              {hasValidReferenceUrl && (
+                <Link
+                  href={project.referenceUrl!}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <ExternalLinkIcon className='w-4 h-4' />
+                  <span>Reference</span>
+                </Link>
+              )}
+            </div>
+          )}
         </CardContent>
 
         </Card>

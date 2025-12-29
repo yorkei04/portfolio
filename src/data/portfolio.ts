@@ -204,7 +204,7 @@ export const portfolioData = {
         'Tailwind CSS',
         'Responsive Design',
       ],
-      githubUrl: '#',
+      githubUrl: 'https://github.com/yorkei04/portfolio',
       liveUrl: '#',
       featured: true,
     },
