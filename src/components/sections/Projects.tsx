@@ -136,14 +136,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             animationDelay: `${index * 100}ms`,
           }}
         >
-        {project.featured && (
-          <div className='absolute top-4 right-4 z-10'>
-            <Badge variant='default' className='text-xs'>
-              Featured
-            </Badge>
-          </div>
-        )}
-
         <CardHeader>
           {/* Project Image Preview */}
           <div className='w-full h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-300'>

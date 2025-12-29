@@ -850,6 +850,72 @@ function RoboconOverlay() {
   );
 }
 
+function PortfolioOverlay() {
+  const { hoveredProjectId } = useProjectHover();
+  const isPortfolioHovered = hoveredProjectId === '5';
+  const [portfolioTop, setPortfolioTop] = useState<number>(0);
+
+  // Update Portfolio position to align with Portfolio project card
+  useEffect(() => {
+    const updatePortfolioPosition = () => {
+      // Find the Portfolio project card (id='5')
+      const portfolioCard = document.querySelector('[data-project-id="5"]');
+      const outerContainer = document.querySelector('.min-h-screen.font-sans');
+      if (!portfolioCard || !outerContainer) return;
+
+      // Get the position of the Portfolio project card
+      const portfolioRect = portfolioCard.getBoundingClientRect();
+      const portfolioTop = window.scrollY + portfolioRect.top;
+      
+      // Get the position of the outer container
+      const containerRect = outerContainer.getBoundingClientRect();
+      const containerTop = window.scrollY + containerRect.top;
+      
+      // Calculate the offset relative to the outer container to align with Portfolio card top
+      const offset = portfolioTop - containerTop;
+      setPortfolioTop(Math.max(0, offset));
+    };
+
+    // Update position on mount and when Portfolio is hovered
+    if (isPortfolioHovered) {
+      updatePortfolioPosition();
+      window.addEventListener('resize', updatePortfolioPosition);
+      window.addEventListener('scroll', updatePortfolioPosition, { passive: true });
+
+      return () => {
+        window.removeEventListener('resize', updatePortfolioPosition);
+        window.removeEventListener('scroll', updatePortfolioPosition);
+      };
+    }
+  }, [isPortfolioHovered]);
+
+  if (!isPortfolioHovered) return null;
+
+  return (
+    <div
+      className='hidden lg:block absolute right-0 pointer-events-none z-10 animate-fade-in'
+      style={{ 
+        top: `${portfolioTop}px`,
+        width: '65vw',
+        maxWidth: '1400px',
+        padding: '1.5rem'
+      }}
+    >
+      <div className='w-full space-y-4'>
+        <div className='w-full min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] bg-foreground/5 rounded-lg overflow-hidden relative'>
+          <Image
+            src='/image/kei_portfolio.png'
+            alt='Personal Portfolio Website'
+            fill
+            className='object-contain'
+            sizes='65vw'
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <ProjectHoverProvider>
@@ -914,6 +980,8 @@ export default function Home() {
         <SurgicalOverlay />
         {/* Robocon Image Overlay - Positioned on right side of page, overlaying both columns */}
         <RoboconOverlay />
+        {/* Portfolio Image Overlay - Positioned on right side of page, overlaying both columns */}
+        <PortfolioOverlay />
       </div>
     </ProjectHoverProvider>
   );

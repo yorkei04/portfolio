@@ -191,6 +191,23 @@ export const portfolioData = {
       referenceUrl: 'https://www.cpr.cuhk.edu.hk/en/press/cuhk-robotics-team-wins-again-in-robocon-hong-kong-contest/',
       featured: true,
     },
+    {
+      id: '5',
+      title: 'Personal Portfolio Website',
+      description:
+        "The site you're looking at is a responsive web application that showcases my experience, featured projects, and background. Built with React and Next.js, it serves as both a living CV and a technical playground where I experiment with modern frontend development and the clear presentation of engineering work. In the future, I plan to extend it with a backend to support more interactive features.",
+      image: '/image/kei_portfolio.png',
+      technologies: [
+        'React',
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Responsive Design',
+      ],
+      githubUrl: '#',
+      liveUrl: '#',
+      featured: true,
+    },
   ],
 
   // Education
