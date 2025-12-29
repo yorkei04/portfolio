@@ -13,7 +13,7 @@ export const portfolioData = {
     greeting: "Welcome to my portfolio, I'm",
     tagline: 'Bridging software & hardware in control',
     description:
-      'Software engineer at MTR, developing station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA control systems at Hitachi Rail for railway. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO.',
+      'Software engineer at MTR, developing station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA control systems at Hitachi Rail for railway. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my works. The site itself is a hands-on exercise in building a responsive website with Cursor and Next.js framework originally developed by my friend, Andrew SZE-TO.',
   },
 
   // Navigation
