@@ -878,6 +878,20 @@ export default function Home() {
               </div>
             </div>
             <About />
+            {/* Mobile MTR Depot Photo - Only visible on mobile, hidden on desktop */}
+            <div className='lg:hidden px-4 py-8'>
+              <div className='w-full space-y-4 max-w-md mx-auto'>
+                <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                  <Image
+                    src='/image/mtr_depot.jpg'
+                    alt='MTR Depot'
+                    fill
+                    className='object-cover'
+                    sizes='(max-width: 1024px) 100vw, 0vw'
+                  />
+                </div>
+              </div>
+            </div>
             <Projects />
             <Experience />
             <Education />
