@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
-import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 // Helper function to render text with links
@@ -434,53 +433,6 @@ export default function Hero() {
                 </span>
               </p>
             ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div
-            className={cn(
-              'transition-all duration-500',
-              currentStep >= 4
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-4',
-            )}
-          >
-            <div className='flex flex-col sm:flex-row gap-4 justify-start items-start'>
-              <Button
-                size='lg'
-                onClick={() =>
-                  document
-                    .getElementById('about')
-                    ?.scrollIntoView({ behavior: 'smooth' })
-                }
-                className='min-w-[150px]'
-              >
-                About Me
-              </Button>
-              <Button
-                size='lg'
-                onClick={() =>
-                  document
-                    .getElementById('projects')
-                    ?.scrollIntoView({ behavior: 'smooth' })
-                }
-                className='min-w-[150px]'
-              >
-                View My Work
-              </Button>
-              <Button
-                variant='outline'
-                size='lg'
-                onClick={() =>
-                  document
-                    .getElementById('contact')
-                    ?.scrollIntoView({ behavior: 'smooth' })
-                }
-                className='min-w-[150px]'
-              >
-                Get In Touch
-              </Button>
-            </div>
           </div>
 
           {/* Social Links */}

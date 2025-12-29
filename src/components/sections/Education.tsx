@@ -83,6 +83,7 @@ interface EducationItemProps {
     projects: string[];
     gpa: string;
     image?: string;
+    logo?: string;
   };
   index: number;
   isVisible: boolean;
@@ -113,7 +114,20 @@ function EducationItem({ education, index, isVisible }: EducationItemProps) {
                 {education.degree}
               </h3>
               <div className='flex flex-col sm:flex-row sm:items-center gap-2 text-foreground/70'>
-                <span className='font-medium'>{education.institution}</span>
+                <div className='flex items-center gap-2'>
+                  {education.logo && (
+                    <div className='relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-foreground/10'>
+                      <Image
+                        src={education.logo}
+                        alt={`${education.institution} logo`}
+                        fill
+                        className='object-cover'
+                        sizes='40px'
+                      />
+                    </div>
+                  )}
+                  <span className='font-medium'>{education.institution}</span>
+                </div>
                 <span className='hidden sm:block'>•</span>
                 <span>{education.location}</span>
               </div>

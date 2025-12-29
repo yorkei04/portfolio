@@ -7,11 +7,9 @@ import Container from '@/components/ui/Container';
 import Card, {
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import { useProjectHover } from '@/contexts/ProjectHoverContext';
 import { cn } from '@/lib/utils';
@@ -159,43 +157,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                   onError={() => setImageError(true)}
                 />
-                {/* Overlay with links - only show if we have valid links */}
-                {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
-                  <div className='absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4'>
-                    {hasValidLiveUrl && (
-                      <Button
-                        size='sm'
-                        onClick={() => window.open(project.liveUrl, '_blank')}
-                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'
-                      >
-                        <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                        Live Demo
-                      </Button>
-                    )}
-                    {hasValidGithubUrl && (
-                      <Button
-                        variant='outline'
-                        size='sm'
-                        onClick={() => window.open(project.githubUrl, '_blank')}
-                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'
-                      >
-                        <GitHubIcon className='w-4 h-4 mr-2' />
-                        Code
-                      </Button>
-                    )}
-                    {hasValidReferenceUrl && (
-                      <Button
-                        variant='outline'
-                        size='sm'
-                        onClick={() => window.open(project.referenceUrl, '_blank')}
-                        className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'
-                      >
-                        <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                        Reference
-                      </Button>
-                    )}
-                  </div>
-                )}
               </>
             ) : (
               <div className='absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center'>
@@ -232,54 +193,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </CardContent>
 
-        {(hasValidLiveUrl || hasValidGithubUrl || hasValidReferenceUrl) && (
-          <CardFooter>
-            <div className='flex gap-2 w-full'>
-              {hasValidLiveUrl && (
-                <Button
-                  size='sm'
-                  variant='outline'
-                  onClick={() => window.open(project.liveUrl, '_blank')}
-                  className={cn(
-                    'flex items-center justify-center',
-                    (hasValidGithubUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
-                  )}
-                >
-                  <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                  Demo
-                </Button>
-              )}
-              {hasValidGithubUrl && (
-                <Button
-                  size='sm'
-                  variant='outline'
-                  onClick={() => window.open(project.githubUrl, '_blank')}
-                  className={cn(
-                    'flex items-center justify-center',
-                    (hasValidLiveUrl || hasValidReferenceUrl) ? 'flex-1' : 'w-full',
-                  )}
-                >
-                  <GitHubIcon className='w-4 h-4 mr-2' />
-                  Code
-                </Button>
-              )}
-              {hasValidReferenceUrl && (
-                <Button
-                  size='sm'
-                  variant='outline'
-                  onClick={() => window.open(project.referenceUrl, '_blank')}
-                  className={cn(
-                    'flex items-center justify-center',
-                    (hasValidLiveUrl || hasValidGithubUrl) ? 'flex-1' : 'w-full',
-                  )}
-                >
-                  <ExternalLinkIcon className='w-4 h-4 mr-2' />
-                  Reference
-                </Button>
-              )}
-            </div>
-          </CardFooter>
-        )}
         </Card>
       </div>
     </>

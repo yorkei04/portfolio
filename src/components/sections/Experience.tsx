@@ -81,6 +81,7 @@ interface ExperienceItemProps {
     description: string;
     achievements: string[];
     technologies: string[];
+    logo?: string;
   };
   index: number;
   isVisible: boolean;
@@ -111,7 +112,20 @@ function ExperienceItem({ experience, index, isVisible }: ExperienceItemProps) {
                 {experience.position}
               </h3>
               <div className='flex flex-col sm:flex-row sm:items-center gap-2 text-foreground/70'>
-                <span className='font-medium'>{experience.company}</span>
+                <div className='flex items-center gap-2'>
+                  {experience.logo && (
+                    <div className='relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-foreground/10'>
+                      <Image
+                        src={experience.logo}
+                        alt={`${experience.company} logo`}
+                        fill
+                        className='object-cover'
+                        sizes='40px'
+                      />
+                    </div>
+                  )}
+                  <span className='font-medium'>{experience.company}</span>
+                </div>
                 <span className='hidden sm:block'>•</span>
                 <span>{experience.location}</span>
               </div>

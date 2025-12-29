@@ -13,7 +13,7 @@ export const portfolioData = {
     greeting: "Welcome to my portfolio, I'm",
     tagline: 'Bridging software & hardware in control',
     description:
-      'Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO.',
+      'Software engineer at MTR, developing station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA control systems at Hitachi Rail for railway. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.\n\nThis portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a React and Next.js framework originally developed by my friend, Andrew SZE-TO.',
   },
 
   // Navigation
@@ -201,6 +201,7 @@ export const portfolioData = {
       degree: 'MSc in Electrical and Electronic Engineering',
       duration: 'Sept. 2025 - May 2027',
       location: 'Hong Kong',
+      logo: '/image/hku_logo.jpg',
       description:
         'Emphasis on identifying software-driven improvements in power and communication systems.',
       achievements: ['Update Soon...'],
@@ -220,6 +221,7 @@ export const portfolioData = {
       degree: 'BEng in Computer Engineering',
       duration: 'Sept. 2020 - May 2024',
       location: 'Hong Kong',
+      logo: '/image/cuhk_logo.jpg',
       description:
         'Comprehensive engineering program focusing on computer systems, software development, and advanced computing technologies.',
       achievements: [
@@ -277,6 +279,7 @@ export const portfolioData = {
       position: 'Operations Engineering Associate',
       duration: 'Aug 2025 - Present',
       location: 'Hong Kong',
+      logo: '/image/mtr_logo.jpg',
       description:
         'Develop Universal Station Computer for Automatic Fare Collection (AFC) System. Ensure the data transaction between smart card processing terminal, entry/exit gates, ticket machines, to the IT backend, Clearing House and Octopus Cards Ltd',
       achievements: [
@@ -296,6 +299,7 @@ export const portfolioData = {
       position: 'Associate Software Engineer',
       duration: 'May 2024 - Aug 2025',
       location: 'Hong Kong',
+      logo: '/image/hitachirail_logo.jpg',
       description:
         'Configured control system for rail tunnel ventilation, building services, signaling, and power lines',
       achievements: [
@@ -321,6 +325,7 @@ export const portfolioData = {
       position: 'Summer Intern',
       duration: 'June - July 2023',
       location: 'Hong Kong',
+      logo: '/image/mtr_logo.jpg',
       description:
         '',
       achievements: [
@@ -338,6 +343,7 @@ export const portfolioData = {
       position: 'Programmer Trainee (Part-time)',
       duration: 'Sept. 2022 - May 2023',
       location: 'Hong Kong',
+      logo: '/image/aecom_logo.jpg',
       description:
         '',
       achievements: [
@@ -359,6 +365,7 @@ export const portfolioData = {
       position: 'IT Intern',
       duration: 'June - Aug. 2022',
       location: 'Hong Kong',
+      logo: '/image/hkt_logo.jpg',
       description:
         '',
       achievements: [
