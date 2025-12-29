@@ -44,7 +44,6 @@ src/
 
 - **Hero** - Introduction with animated background
 - **About** - Personal story and approach to development
-- **Skills** - Interactive tech stack with filtering
 - **Projects** - Featured work with live demos
 - **Experience** - Professional timeline
 - **Contact** - Contact form and social links
@@ -141,25 +140,6 @@ Place your resume as `public/resume.pdf` (or update the path in `portfolio.ts`)
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to GitHub Pages.
 
 For more detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-## 🤝 About Me
-
-Hi, I'm
-
-**Kei**  
-*Bridging software and hardware in control*
-
-Software engineer at MTR, developing universal station computers for Automatic Fare Collection (AFC) systems. Formerly configured SCADA and Human Machine Interface (HMI) systems at Hitachi Rail for railway control. Passionate about integrating software, electronics, and real-time control systems that power critical infrastructure.
-
-This portfolio showcases my experience and projects. The site itself is a hands-on exercise in building a responsive web application with Cursor, built on top of a Next.js framework originally developed by my friend, Andrew SZE-TO.
-
-## 📫 Contact
-
-- **Email**: hungkeiyau@gmail.com
-- **GitHub**: [@yorkei04](https://github.com/yorkei04)
-- **LinkedIn**:
-  [kei-yau](https://www.linkedin.com/in/kei-yau/)
-- **Instagram**: [@yorkei04](https://www.instagram.com/yorkei04/)
 
 ## 📄 License
 
