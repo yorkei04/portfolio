@@ -439,7 +439,7 @@ export const portfolioData = {
     currentFocus: {
       title: 'Currently Exploring',
       description:
-        'Distributed control system architectures, real-time data processing, and integration of AI in critical infrastructure systems.',
+        'Distributed control system design, real-time data processing, and integration of AI in critical infrastructure systems.',
     },
     coreTechnologies: [
       { name: 'Cursor', level: 85 },

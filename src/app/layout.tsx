@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Kei - Portfolio',
   description:
-    'Interested in software, electronic, and control engineering',
+    'Interested in software, electronic, and control engineering.',
   keywords: [
     'Kei',
     'Software | Electronic | Control Engineer',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kei - Software | Control Engineer',
     description:
-      'Interested in software development, electronic engineering, and control engineering.',
+      'Interested in software, electronic, and control engineering.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Kei Portfolio',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kei - Software | Control Engineer',
     description:
-      'Interested in software development, electronic engineering, and control engineering.',
+      'Interested in software, electronic, and control engineering.',
     creator: '@zkwokleung',
   },
   robots: {
