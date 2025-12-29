@@ -102,22 +102,6 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Quick Stats */}
-              <div className='grid grid-cols-2 gap-6 mt-8 p-6 bg-background rounded-lg border border-foreground/10'>
-                {portfolioData.about.stats.map((stat) => (
-                  <div key={stat.key} className='text-center'>
-                    <div className='text-2xl font-bold text-foreground mb-1'>
-                      {stat.key === 'projects'
-                        ? portfolioData.projects.length
-                        : stat.value}
-                    </div>
-                    <div className='text-sm text-foreground/60'>
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
               {/* Current Focus */}
               <div className='mt-8 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/20'>
                 <h4 className='text-lg font-medium mb-2'>
