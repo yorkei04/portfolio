@@ -449,9 +449,9 @@ export const portfolioData = {
       coreTechnologiesTitle: 'Core Technologies',
     },
     paragraphs: [
-      'My journey began at the auto repair shop, where I worked as a vehicle mechanic. Through hands-on experience, I observed a fundamental shift: modern vehicles, whether mechanical or electrical, were increasingly controlled by software and electronics. This realization sparked my transition to computer engineering.',
-      'I pursued Computer Engineering at the Chinese University of Hong Kong. Initially, I focused on mechatronics, participating in robotics competitions and winning the Robocon Hong Kong Contest 2021. However, I soon discovered that software held far greater potential for improving and controlling complex systems.',
-      'Today, I work as a software engineer across various companies, integrating software and hardware in control systems. From developing SCADA and HMI systems for railway control at Hitachi Rail to building universal station computers for AFC systems at MTR, I specialize in bridging the gap between physical infrastructure and software solutions.',
+      'My journey began at the auto repair shop, where I worked as a vehicle mechanic. I observed a fundamental shift: modern vehicles, whether ICE or EV, were increasingly controlled by software and electronics. This insight sparked my transition to computer engineering.',
+      'I pursued Computer Engineering at the CUHK. Initially, I focused on mechatronics, participating in robotics competitions and winning the Robocon Hong Kong Contest 2021. However, I soon discovered that software held far greater potential for improving and controlling complex systems.',
+      'Today, I work as a software engineer across various companies, from developing SCADA for railway control at Hitachi Rail to building station computers for AFC systems at MTR, I specialize in bridging the gap between physical infrastructure and software solutions.',
     ],
     skills: [
       'AFC (Automatic Fare Collection) systems',
