@@ -895,11 +895,15 @@ export default function Home() {
             <Projects />
             <Experience />
             <Education />
-            <Contact />
           </div>
 
           {/* Right Column - Shows MTR OCC, Robocon (when About in view) */}
           <LeftColumn />
+          
+          {/* Contact Section - Full width, breaks out of two-column layout */}
+          <div className='col-span-12'>
+            <Contact />
+          </div>
         </main>
         <Footer />
         {/* Light Rail Image Overlay - Positioned on right side of page, overlaying both columns */}
