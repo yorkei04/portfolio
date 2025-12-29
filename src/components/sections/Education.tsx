@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { portfolioData } from '@/data/portfolio';
 import Container from '@/components/ui/Container';
 import Badge from '@/components/ui/Badge';
@@ -81,6 +82,7 @@ interface EducationItemProps {
     coursework: string[];
     projects: string[];
     gpa: string;
+    image?: string;
   };
   index: number;
   isVisible: boolean;
@@ -89,6 +91,7 @@ interface EducationItemProps {
 function EducationItem({ education, index, isVisible }: EducationItemProps) {
   return (
     <div
+      data-education-id={education.id}
       className={cn(
         'relative transition-all duration-1000',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
@@ -179,6 +182,28 @@ function EducationItem({ education, index, isVisible }: EducationItemProps) {
               ))}
             </div>
           </div>
+
+          {/* Image - Display for mobile */}
+          {education.image && (
+            <div className='lg:hidden mt-6 px-2'>
+              <div className='w-full space-y-4'>
+                <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
+                  <Image
+                    src={education.image}
+                    alt={`${education.institution} - ${education.degree}`}
+                    fill
+                    className='object-cover'
+                    sizes='(max-width: 1024px) 100vw, 0vw'
+                  />
+                </div>
+                {education.id === '2' && (
+                  <p className='text-sm text-foreground/70 leading-relaxed text-left'>
+                    While studying Computer Engineering,I explored in robotics and helped my university team win Robocon Hong Kong 2021.
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

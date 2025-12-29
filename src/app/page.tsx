@@ -14,9 +14,9 @@ import { ProjectHoverProvider, useProjectHover } from '@/contexts/ProjectHoverCo
 
 function LeftColumn() {
   const { hoveredProjectId } = useProjectHover();
-  const [isAboutInView, setIsAboutInView] = useState(false);
+  const [isEducationInView, setIsEducationInView] = useState(false);
   const [roboconTop, setRoboconTop] = useState<number>(0);
-  const isAboutInViewRef = useRef(false);
+  const isEducationInViewRef = useRef(false);
   const [isExperienceInView, setIsExperienceInView] = useState(false);
   const [mtrGateTop, setMtrGateTop] = useState<number>(0);
   const isExperienceInViewRef = useRef(false);
@@ -26,20 +26,28 @@ function LeftColumn() {
   const [isAecomInView, setIsAecomInView] = useState(false);
   const [aecomArcGisTop, setAecomArcGisTop] = useState<number>(0);
   const isAecomInViewRef = useRef(false);
+  const [isAboutInView, setIsAboutInView] = useState(false);
+  const [mtrDepotTop, setMtrDepotTop] = useState<number>(0);
+  const isAboutInViewRef = useRef(false);
 
   useEffect(() => {
-    let aboutObserver: IntersectionObserver | null = null;
+    let educationObserver: IntersectionObserver | null = null;
     let timeoutId: NodeJS.Timeout | null = null;
 
     const updateRoboconPosition = () => {
-      const aboutElement = document.getElementById('about');
+      // Find the CUHK education entry (id='2')
+      const cuhkEducationItem = document.querySelector('[data-education-id="2"]');
       const column = document.querySelector('aside');
-      if (!aboutElement || !column) return;
+      if (!cuhkEducationItem || !column) return;
 
-      // Get the position and dimensions of the About section
-      const aboutRect = aboutElement.getBoundingClientRect();
-      const aboutTop = window.scrollY + aboutRect.top;
-      const aboutHeight = aboutRect.height;
+      // Find the card frame inside the education item
+      const cardFrame = cuhkEducationItem.querySelector('.bg-background.border');
+      const targetElement = cardFrame || cuhkEducationItem;
+      
+      // Get the position of the card frame
+      const targetRect = targetElement.getBoundingClientRect();
+      const targetTop = window.scrollY + targetRect.top;
+      const targetHeight = targetRect.height;
       
       // Get the position of the column relative to the document
       const columnRect = column.getBoundingClientRect();
@@ -58,9 +66,9 @@ function LeftColumn() {
         imageHeight = columnWidth - padding + 100; // aspect-square + text
       }
       
-      // Calculate the center position: center of About section minus half of image height
-      const aboutCenter = aboutTop + (aboutHeight / 2);
-      const imageTopPosition = aboutCenter - (imageHeight / 2);
+      // Calculate the center position: center of CUHK education item minus half of image height
+      const targetCenter = targetTop + (targetHeight / 2);
+      const imageTopPosition = targetCenter - (imageHeight / 2);
       
       // Calculate the offset relative to the column
       const offset = imageTopPosition - columnTop;
@@ -68,21 +76,21 @@ function LeftColumn() {
     };
 
 
-    const setupAboutObserver = () => {
-      const aboutElement = document.getElementById('about');
-      if (!aboutElement) {
-        timeoutId = setTimeout(setupAboutObserver, 100);
+    const setupEducationObserver = () => {
+      const educationElement = document.getElementById('education');
+      if (!educationElement) {
+        timeoutId = setTimeout(setupEducationObserver, 100);
         return;
       }
 
       updateRoboconPosition();
 
-      aboutObserver = new IntersectionObserver(
+      educationObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             const isIntersecting = entry.isIntersecting;
-            isAboutInViewRef.current = isIntersecting;
-            setIsAboutInView(isIntersecting);
+            isEducationInViewRef.current = isIntersecting;
+            setIsEducationInView(isIntersecting);
             if (isIntersecting) {
               requestAnimationFrame(updateRoboconPosition);
             }
@@ -94,22 +102,22 @@ function LeftColumn() {
         },
       );
 
-      aboutObserver.observe(aboutElement);
+      educationObserver.observe(educationElement);
     };
 
     const handleScroll = () => {
-      if (isAboutInViewRef.current) {
+      if (isEducationInViewRef.current) {
         updateRoboconPosition();
       }
     };
 
-    setupAboutObserver();
+    setupEducationObserver();
     window.addEventListener('resize', updateRoboconPosition);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
-      if (aboutObserver) aboutObserver.disconnect();
+      if (educationObserver) educationObserver.disconnect();
       window.removeEventListener('resize', updateRoboconPosition);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -340,11 +348,99 @@ function LeftColumn() {
     };
   }, []);
 
+  useEffect(() => {
+    let aboutObserver: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    const updateMtrDepotPosition = () => {
+      // Find the About section
+      const aboutElement = document.getElementById('about');
+      const column = document.querySelector('aside');
+      if (!aboutElement || !column) return;
+
+      // Get the position of the About section
+      const aboutRect = aboutElement.getBoundingClientRect();
+      const aboutTop = window.scrollY + aboutRect.top;
+      const aboutHeight = aboutRect.height;
+      
+      // Get the position of the column relative to the document
+      const columnRect = column.getBoundingClientRect();
+      const columnTop = window.scrollY + columnRect.top;
+      
+      // Get the mtr depot image container to calculate its height
+      const mtrDepotContainer = column.querySelector('.mtr-depot-container');
+      let imageHeight = 0;
+      
+      if (mtrDepotContainer) {
+        imageHeight = mtrDepotContainer.getBoundingClientRect().height;
+      } else {
+        // Fallback: estimate height based on column width (aspect-square + padding)
+        const columnWidth = columnRect.width;
+        const padding = 48; // p-6 = 24px * 2 = 48px
+        imageHeight = (columnWidth * 2 / 3) + padding; // w-2/3 aspect-square + padding
+      }
+      
+      // Calculate the center position: center of About section minus half of image height
+      const aboutCenter = aboutTop + (aboutHeight / 2);
+      const imageTopPosition = aboutCenter - (imageHeight / 2);
+      
+      // Calculate the offset relative to the column
+      const offset = imageTopPosition - columnTop;
+      setMtrDepotTop(Math.max(0, offset));
+    };
+
+    const setupAboutObserver = () => {
+      const aboutElement = document.getElementById('about');
+      if (!aboutElement) {
+        timeoutId = setTimeout(setupAboutObserver, 100);
+        return;
+      }
+
+      updateMtrDepotPosition();
+
+      aboutObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const isIntersecting = entry.isIntersecting;
+            isAboutInViewRef.current = isIntersecting;
+            setIsAboutInView(isIntersecting);
+            if (isIntersecting) {
+              requestAnimationFrame(updateMtrDepotPosition);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px',
+        },
+      );
+
+      aboutObserver.observe(aboutElement);
+    };
+
+    const handleScroll = () => {
+      if (isAboutInViewRef.current) {
+        updateMtrDepotPosition();
+      }
+    };
+
+    setupAboutObserver();
+    window.addEventListener('resize', updateMtrDepotPosition);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      if (aboutObserver) aboutObserver.disconnect();
+      window.removeEventListener('resize', updateMtrDepotPosition);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <aside className='hidden lg:block lg:col-span-4 xl:col-span-5 relative bg-background'>
       {/* Default MTR OCC - Not sticky, normal flow */}
       <div className='p-4 lg:p-6 min-h-screen flex items-center justify-center mtr-occ-container'>
-        <div className='w-full space-y-4'>
+        <div className='w-2/3 space-y-4 mx-auto'>
           <div className='w-full aspect-square bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
             <Image
               src='/image/mtr_occ.jpeg'
@@ -356,18 +452,18 @@ function LeftColumn() {
             />
           </div>
           <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-            The Operations Control Center features a large, integrated visual display wall that provides operators with real-time system status and control interfaces for SCADA, signaling, and automatic fare collection (AFC) systems, enabling continuous monitoring and rapid response
+            The Operations Control Center provides real-time monitoring and control for SCADA, signaling, and AFC systems.
           </p>
         </div>
       </div>
 
-      {/* Robocon Image - Positioned below MTR OCC, centered when About section is in view */}
-      {isAboutInView && (
+      {/* Robocon Image - Positioned below MTR OCC, left-aligned when Education section is in view */}
+      {isEducationInView && (
         <div
           className='p-4 lg:p-6 animate-fade-in absolute w-full robocon-container'
           style={{ top: `${roboconTop}px` }}
         >
-          <div className='w-full space-y-4'>
+          <div className='w-2/3 space-y-4'>
             <div className='w-full aspect-square bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
               <Image
                 src='/image/robocon.jpeg'
@@ -377,8 +473,8 @@ function LeftColumn() {
                 sizes='(max-width: 1024px) 0vw, (max-width: 1280px) 33vw, 42vw'
               />
             </div>
-            <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-              While studying Computer Engineering, I explored hardware–software integration in robotics and helped my university team win Robocon Hong Kong 2021. I designed the pick‑and‑place mechanism for the arrow‑shooter.
+            <p className='text-sm text-foreground/70 leading-relaxed text-left'>
+              While studying Computer Engineering, I explored in robotics and helped my university team win Robocon Hong Kong 2021.
             </p>
           </div>
         </div>
@@ -449,6 +545,26 @@ function LeftColumn() {
             <p className='text-sm text-foreground/70 leading-relaxed text-left'>
               First experience with the Microsoft stack, using C#, .NET, and MS SQL to convert ArcGIS files into queryable geospatial data.
             </p>
+          </div>
+        </div>
+      )}
+
+      {/* MTR Depot Image - Positioned next to About section */}
+      {isAboutInView && (
+        <div
+          className='p-4 lg:p-6 animate-fade-in absolute w-full mtr-depot-container'
+          style={{ top: `${mtrDepotTop}px` }}
+        >
+          <div className='w-2/3 space-y-4 mx-auto'>
+            <div className='w-full aspect-square bg-foreground/3 rounded-lg overflow-hidden border border-foreground/10 relative'>
+              <Image
+                src='/image/mtr_depot.jpeg'
+                alt='MTR Depot'
+                fill
+                className='object-cover'
+                sizes='(max-width: 1024px) 0vw, (max-width: 1280px) 33vw, 42vw'
+              />
+            </div>
           </div>
         </div>
       )}
@@ -664,26 +780,6 @@ function SurgicalOverlay() {
   );
 }
 
-function MobileRoboconPhoto() {
-  return (
-    <div className='lg:hidden px-4 py-8'>
-      <div className='w-full space-y-4 max-w-md mx-auto'>
-        <div className='w-full aspect-square bg-foreground/5 rounded-lg overflow-hidden border border-foreground/10 relative'>
-          <Image
-            src='/image/robocon.jpeg'
-            alt='Robocon Hong Kong Champion 2021'
-            fill
-            className='object-cover'
-            sizes='(max-width: 1024px) 100vw, 0vw'
-          />
-        </div>
-        <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-          While studying Computer Engineering, I explored hardware–software integration in robotics and helped my university team win Robocon Hong Kong 2021. I designed the pick‑and‑place mechanism for the arrow‑shooter.
-        </p>
-      </div>
-    </div>
-  );
-}
 
 function RoboconOverlay() {
   const { hoveredProjectId } = useProjectHover();
@@ -777,13 +873,11 @@ export default function Home() {
                   />
                 </div>
                 <p className='text-sm text-foreground/70 leading-relaxed text-center'>
-                  The Operations Control Center features a large, integrated visual display wall that provides operators with real-time system status and control interfaces for SCADA, signaling, and automatic fare collection (AFC) systems, enabling continuous monitoring and rapid response
+                  The Operations Control Center provides real-time monitoring and control for SCADA, signaling, and AFC systems.
                 </p>
               </div>
             </div>
             <About />
-            {/* Mobile Robocon Photo - Only visible on mobile, hidden on desktop */}
-            <MobileRoboconPhoto />
             <Projects />
             <Experience />
             <Education />

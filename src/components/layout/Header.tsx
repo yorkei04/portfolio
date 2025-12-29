@@ -24,8 +24,8 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white dark:bg-slate-900/95 border-b border-gray-200 dark:border-slate-800/50 shadow-sm'
-          : 'bg-white dark:bg-slate-900/95',
+          ? 'bg-gray-200 dark:bg-slate-900/95 border-b border-gray-200 dark:border-slate-800/50 shadow-sm'
+          : 'bg-gray-200 dark:bg-slate-900/95',
       )}
     >
       <Container>
@@ -86,7 +86,7 @@ export default function Header() {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
           )}
         >
-          <nav className='py-4 border-t border-gray-200 dark:border-slate-800/50 bg-white dark:bg-slate-900/95'>
+          <nav className='py-4 border-t border-gray-200 dark:border-slate-800/50 bg-gray-200 dark:bg-slate-900/95'>
             {portfolioData.navigation.map((item) => (
               <Link
                 key={item.label}

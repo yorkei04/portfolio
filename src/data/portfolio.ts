@@ -239,6 +239,7 @@ export const portfolioData = {
         'Built responsive web application with React similar to this portfolio',
       ],
       gpa: '3.2/4.0',
+      image: '/image/robocon.jpeg',
     },
     {
       id: '3',
